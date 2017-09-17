@@ -11,6 +11,7 @@ public class Player : MonoBehaviour {
 		spaceship = GetComponent<Spaceship> ();
 		while (true) {
 			spaceship.Shot (transform);
+			GetComponent<AudioSource> ().Play ();
 			yield return new WaitForSeconds (spaceship.shotDelay);
 		}
 	}
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour {
 			Destroy (collider.gameObject);
 		}
 		if (layerName == "Enemy" || layerName == "BulletEnemy") {
+			FindObjectOfType<Manager> ().GameOver ();
 			Destroy (gameObject);
 		}
 	}
