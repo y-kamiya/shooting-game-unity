@@ -17,4 +17,5 @@ public class Spaceship : MonoBehaviour {
 	public void Move(Vector2 direction) {
 		GetComponent<Rigidbody2D> ().velocity = direction * speed;
 	}
+		
 }

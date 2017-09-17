@@ -22,4 +22,14 @@ public class Enemy : MonoBehaviour {
 			yield return new WaitForSeconds (spaceship.shotDelay);
 		}
 	}
+
+	void OnTriggerEnter2D(Collider2D collider) {
+		string layerName = LayerMask.LayerToName (collider.gameObject.layer);
+		if (layerName == "BulletPlayer") {
+			Destroy (collider.gameObject);
+		}
+		if (layerName == "Player" || layerName == "BulletPlayer") {
+			Destroy (gameObject);
+		}
+	}
 }

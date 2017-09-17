@@ -32,4 +32,14 @@ public class Player : MonoBehaviour {
 
 		spaceship.Move(direction);
 	}
+
+	void OnTriggerEnter2D(Collider2D collider) {
+		string layerName = LayerMask.LayerToName (collider.gameObject.layer);
+		if (layerName == "BulletEnemy") {
+			Destroy (collider.gameObject);
+		}
+		if (layerName == "Enemy" || layerName == "BulletEnemy") {
+			Destroy (gameObject);
+		}
+	}
 }
