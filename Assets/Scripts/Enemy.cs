@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
+	public int hp = 1;
 	Spaceship spaceship;
 
 	// Use this for initialization
@@ -29,7 +30,14 @@ public class Enemy : MonoBehaviour {
 			Destroy (collider.gameObject);
 		}
 		if (layerName == "Player" || layerName == "BulletPlayer") {
-			Destroy (gameObject);
+			Bullet bullet = collider.transform.GetComponent<Bullet> ();
+			hp -= bullet.power;
+			spaceship.GetAnimator ().SetTrigger ("Damage");
+			if (hp <= 0) {
+				Destroy (gameObject);
+			} else {
+				spaceship.GetAnimator ().SetTrigger ("Damage");
+			}
 		}
 	}
 }
